@@ -29,8 +29,16 @@ https://codepen.io/sosuke/pen/Pjoqqp
 
 @media screen and (max-width: 1000px) {
     :root {
+        --padding-side: 75px;
+        --header-footer-height: 100px;
+        --padding-top: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    :root {
         --padding-side: 30px;
-        --header-footer-height: 30px;
+        --header-footer-height: 75px;
         --padding-top: 20px;
     }
 }
@@ -99,7 +107,7 @@ body {
     
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     .tinted-image{
         background: none;
     }
@@ -119,7 +127,9 @@ header {
     padding-left: var(--padding-side);
     padding-right: var(--padding-side);
     height: var(--header-footer-height);
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 footer {
@@ -145,12 +155,23 @@ footer h5 {
 h1 {
     transition: color 200ms;
     color: var(--light-blue);
+    display: block;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
 }
 
 h1:hover {
     /*text-shadow: 1px 1px 0px lightblue;*/
     color: white;
     cursor: pointer;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
+    /*
+    FIXME: Theres a hover bug in safari that chops off part of the text
+    */
+
+    display: block;
+    
 }
 
 /* actual design */
@@ -201,7 +222,7 @@ h1 {
     user-select: none; 
     transition: letter-spacing 500ms ease-out, color 500ms;
     font-size: 300%;
-    line-height: 1em;
+    line-height: 1.1em;
 }
 
 .hidden {
@@ -227,7 +248,7 @@ h1 {
 }
 
 h1 h2 h3 h4 h5 {
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 a {
@@ -290,11 +311,13 @@ a {
 
 #img-logo {
     max-width: 200px;
+    max-height: auto;
     filter: invert(54%) sepia(13%) saturate(1917%) hue-rotate(195deg) brightness(95%) contrast(93%);
+
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     #img-logo{
-        max-width: 100px;
+        max-width: 150px;
     }
 }

@@ -9,6 +9,10 @@
     function init(){
         console.log("script loaded");
 
+        // insert flask image
+        const flaskimagecontainer = document.getElementById("flask-image");
+        flaskimagecontainer.innerHTML = '<img src="./res/fluidflask/0014.png" draggable="false">';
+
         var last_opened = null;
         var last_cat_active = null;
 
