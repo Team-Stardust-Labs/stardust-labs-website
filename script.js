@@ -1,4 +1,7 @@
 
+var images = new Array();
+var x = 0;
+var forward = true;
 
 (function(window, document, undefined) {
 
@@ -6,12 +9,33 @@
   
     window.onload = init;
   
+    
+
     function init(){
         console.log("script loaded");
 
-        // insert flask image
+        // insert flask image animation
         const flaskimagecontainer = document.getElementById("flask-image");
-        flaskimagecontainer.innerHTML = '<img src="./res/fluidflask/0014.png" draggable="false">';
+        flaskimagecontainer.innerHTML = '<img id="flask-image-frames" src="./res/fluidflask/0014.png" draggable="false">';
+
+        for (let i = 1; i < 30; i++)
+        {
+            images.push("./res/fluidflask/00" + String(i).padStart(2, "0") + ".png")
+        }
+
+        console.log(images)
+        
+        
+
+        
+
+        //setInterval("Animate()", 100);
+        
+
+
+        // insert background video here
+        const background_video_container = document.getElementById("background-video");
+        background_video_container.innerHTML = '<source src="https://assets.mixkit.co/videos/preview/mixkit-ink-swirling-in-blue-tones-underwater-229-large.mp4" type="video/mp4">'
 
         var last_opened = null;
         var last_cat_active = null;
@@ -67,3 +91,22 @@
     }
   
   })(window, document, undefined);
+
+  function Animate() {
+
+    if (images.length <= 1) {
+        return;
+    }
+
+    document.getElementById("flask-image-frames").src = images[x]
+    
+    if (forward) {
+        x++;
+    } else {
+        x--;
+    }
+
+    if ((images.length-1 == x) || (x == 1 && !forward)) {
+        forward = !forward;
+    }
+}

@@ -17,7 +17,7 @@ https://codepen.io/sosuke/pen/Pjoqqp
   }
 
 :root {
-    --dark-blue: #7582df; /*3f4ba8*/
+    --dark-blue: #7582df3f; /*3f4ba8*/ /*7582df*/
     --light-blue: #7582df;
     --padding-side: 150px;
     --header-footer-height: 150px;
@@ -25,6 +25,7 @@ https://codepen.io/sosuke/pen/Pjoqqp
 
     --gradient-top: rgba(48, 41, 56, 0.8);
     --gradient-bottom: rgba(17, 12, 40, 0.9);
+    filter: grayscale(0.0);
 }
 
 @media screen and (max-width: 1000px) {
@@ -82,6 +83,7 @@ body {
     z-index: -1;
     background-repeat: no-repeat;
     overflow: hidden;
+    filter: blur(8px) hue-rotate(69deg) contrast(6) saturate(0.69) brightness(0.42);
   }
 
 .tinted-image {
@@ -128,9 +130,17 @@ header {
     padding-right: var(--padding-side);
     height: var(--header-footer-height);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+
     align-items: center;
+    background-color: var(--dark-blue);
+    border-width: 0px;
+    border-bottom: 1px;
+    border-color: var(--light-blue);
+    border-style: solid;
+    margin-bottom: 1em;
 }
+
 
 footer {
     background-color: var(--dark-blue);
@@ -140,9 +150,22 @@ footer {
     padding-left: var(--padding-side);
     padding-right: var(--padding-side);;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     text-align: justify;
+    border-width: 0px;
+    border-top: 1px;
+    border-color: var(--light-blue);
+    border-style: solid;
+}
+
+@media screen and (max-width: 800px){
+    footer {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        width: 100%;
+    }
 }
 
 footer h4 {
@@ -210,6 +233,8 @@ h1:hover {
     margin-right: calc(-1.0 * var(--padding-side));
     margin-left: calc(-1.0 * var(--padding-side));
     
+    box-shadow: inset 0px 0px 4px gray;
+
 }
 
 h1 {
@@ -247,15 +272,68 @@ h1 {
     color: white;
 }
 
-h1 h2 h3 h4 h5 {
+h1, h2 {
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+}
+
+h1, h2, h3, h4, h5 {
     font-weight: bold;
 }
 
 a {
-    text-decoration: none;
+    text-decoration: underline 2px;
     color: var(--light-blue);
     font-weight: bold;
+    text-underline-offset: 0.1em;
+    text-decoration-color: rgba(0, 0, 255, 0);
+    text-underline-offset: 0.1em;
+    transition: text-decoration-color 300ms, text-underline-offset 300ms;
+    cursor: pointer;
 }
+
+/* light emphase */
+l {
+    color: #bbb;
+}
+
+/* Safari 7.1+ because underline offset dosent work on chrome right now*/
+
+_::-webkit-full-page-media, _:future, :root a {
+
+    text-underline-offset: 0.2em;
+  
+  }
+
+a:hover {
+    text-decoration-color: var(--light-blue);
+    text-underline-offset: 0.1em;
+}
+
+
+#navbar {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap-reverse;
+    
+}
+
+@media screen and (max-width: 500px) {
+    #navbar {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        width: 20%;
+        text-align: center;
+    }
+}
+
+#navbar a {
+    color: white;
+    font-weight: 400;
+}
+
+
 
 .intro-container {
     display: flex;
@@ -296,11 +374,12 @@ a {
 .game {
     background-color: black;
     background-image: url('https://www.wallpaperflare.com/static/63/300/917/render-space-planet-spaceship-wallpaper.jpg');
-    height: 500px;
+    height: 300px;
     background-size: cover;
     color: white;
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 50px;
+    box-shadow: 0px 0px 4px 2px lightgray;
 }
 
 .game h2 {
@@ -312,8 +391,15 @@ a {
 #img-logo {
     max-width: 200px;
     max-height: auto;
-    filter: invert(54%) sepia(13%) saturate(1917%) hue-rotate(195deg) brightness(95%) contrast(93%);
+    /*filter: invert(54%) sepia(13%) saturate(1917%) hue-rotate(195deg) brightness(95%) contrast(93%);
+    */
+    filter: invert(1) drop-shadow(0px 3px 3px var(--light-blue));
+    transition: transform 300ms;
 
+}
+
+#img-logo:hover {
+    transform: scale(105%);
 }
 
 @media screen and (max-width: 600px) {
