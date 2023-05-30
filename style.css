@@ -19,12 +19,13 @@ https://codepen.io/sosuke/pen/Pjoqqp
 :root {
     --dark-blue: #7582df3f; /*3f4ba8*/ /*7582df*/
     --light-blue: #7582df;
+    --header-blue: #98b0ff;
     --padding-side: 150px;
     --header-footer-height: 150px;
     --padding-top: 20px;
 
-    --gradient-top: rgba(48, 41, 56, 0.8);
-    --gradient-bottom: rgba(17, 12, 40, 0.9);
+    --gradient-top: rgb(39, 41, 58); /*rgba(48, 41, 56, 0.8)*/
+    --gradient-bottom: rgb(22, 25, 45); /*rgba(17, 12, 40, 0.9)*/
     filter: grayscale(0.0);
 }
 
@@ -83,7 +84,8 @@ body {
     z-index: -1;
     background-repeat: no-repeat;
     overflow: hidden;
-    filter: blur(8px) hue-rotate(69deg) contrast(6) saturate(0.69) brightness(0.42);
+    opacity: 0;
+    filter: blur(4px) hue-rotate(-29deg) contrast(2) saturate(0.69) brightness(0.12);
   }
 
 .tinted-image {
@@ -164,7 +166,6 @@ footer {
         flex-direction: column;
         justify-content: space-around;
         align-items: flex-start;
-        width: 100%;
     }
 }
 
@@ -177,17 +178,14 @@ footer h5 {
 
 h1 {
     transition: color 200ms;
-    color: var(--light-blue);
+    color: var(--header-blue);
     display: block;
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0, 0, 0);
 }
 
 h1:hover {
     /*text-shadow: 1px 1px 0px lightblue;*/
     color: white;
     cursor: pointer;
-    -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0, 0, 0);
     /*
     FIXME: Theres a hover bug in safari that chops off part of the text
@@ -214,7 +212,7 @@ h1:hover {
 
 .intro h2 {
     text-align: left;
-    color: var(--light-blue);
+    color: var(--header-blue);
 }
 
 .infocard {
@@ -273,7 +271,8 @@ h1 {
 }
 
 h1, h2 {
-    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7);
+    color: var(--header-blue);
 }
 
 h1, h2, h3, h4, h5 {
@@ -369,6 +368,11 @@ a:hover {
     object-fit: cover;
     object-position: 30% 50%;
     filter: contrast(160%) saturate(120%) hue-rotate(30deg) brightness(150%);
+    transition: transform 500ms;
+}
+
+.intro-image img:hover {
+    transform: scale(105%);
 }
 
 .game {
@@ -393,7 +397,7 @@ a:hover {
     max-height: auto;
     /*filter: invert(54%) sepia(13%) saturate(1917%) hue-rotate(195deg) brightness(95%) contrast(93%);
     */
-    filter: invert(1) drop-shadow(0px 3px 3px var(--light-blue));
+    filter: invert(1) drop-shadow(0px 2px 0px var(--light-blue));
     transition: transform 300ms;
 
 }

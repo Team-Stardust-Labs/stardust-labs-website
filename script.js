@@ -2,7 +2,7 @@
 var images = new Array();
 var x = 0;
 var forward = true;
-
+var intervalid  = setInterval("Animate()", 60);
 (function(window, document, undefined) {
 
     // code that should be taken care of right away
@@ -18,6 +18,28 @@ var forward = true;
         const flaskimagecontainer = document.getElementById("flask-image");
         flaskimagecontainer.innerHTML = '<img id="flask-image-frames" src="./res/fluidflask/0014.png" draggable="false">';
 
+
+        // detect flask mouseover
+        flaskimagecontainer.addEventListener(
+            "mouseenter",
+            (event) => {
+                // play the animation target
+                invervalid = setInterval("Animate()", 60);
+                console.log("start")
+            },
+            false
+        );
+        flaskimagecontainer.addEventListener(
+            "mouseleave",
+            (event) => {
+                // end animation on mouse leave
+                clearInterval(invervalid);
+                console.log("end")
+            },
+            false
+        );
+
+
         for (let i = 1; i < 30; i++)
         {
             images.push("./res/fluidflask/00" + String(i).padStart(2, "0") + ".png")
@@ -25,14 +47,8 @@ var forward = true;
 
         console.log(images)
         
-        
-
-        
-
-        //setInterval("Animate()", 100);
-        
-
-
+        clearInterval(intervalid); // clear the inveral
+    
         // insert background video here
         const background_video_container = document.getElementById("background-video");
         background_video_container.innerHTML = '<source src="https://assets.mixkit.co/videos/preview/mixkit-ink-swirling-in-blue-tones-underwater-229-large.mp4" type="video/mp4">'
@@ -110,3 +126,4 @@ var forward = true;
         forward = !forward;
     }
 }
+
